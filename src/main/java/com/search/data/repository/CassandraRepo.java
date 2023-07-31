@@ -6,15 +6,16 @@ import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
+import com.datastax.driver.mapping.Result;
 import com.search.data.config.CassandraConfig;
 import com.search.data.model.SearchData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.cassandra.core.CassandraTemplate;
+import org.springframework.stereotype.Component;
 import java.util.List;
-@Repository
+@Component
 public class CassandraRepo {
 
 
@@ -23,24 +24,31 @@ public class CassandraRepo {
     CassandraConfig cassandraConfig;
 
 //    @Autowired
-//    CassandraTemplate cassandraTemplate;
+//    private CassandraTemplate cassandraTemplate;
 
     private MappingManager mappingManager;
     private Mapper<SearchData> mapper;
 
 
     public ResultSet getData(){
+        Mapper<SearchData> searchMapper = new MappingManager(cassandraConfig.getSession()).mapper(SearchData.class);
+
+
+
+
+
         ResultSet results = null;
-        Statement query = QueryBuilder.select().column("brand_name").from("products","brand_details_translation").allowFiltering()
-                .where(QueryBuilder.eq("id_brand", 1));
+        Statement query = QueryBuilder.select().column("name").from("products","serach_data").allowFiltering()
+                .where(QueryBuilder.eq("id", 1));
         try {
-           // results = cassandraTemplate.getCqlOperations().queryForResultSet(query);
+          //  ResultSet resultSet = cassandraTemplate.getCqlOperations().queryForResultSet(query);
+           // Result<SearchData> productResult = searchMapper.map(resultSet);
+            //results=cassandraConfig.cassandraTemplate().getCqlOperations().queryForResultSet(query);
+//            results = cassandraTemplate.getCqlOperations().queryForResultSet(query);
 //			logger.info(String.format("In getQueryExecutor METHOD in CpnDao CLASS for fetch detail & get Response from DB: {} %s", results));
         } catch (Exception e) {
-            logger.error("Database exception occur in getMsnbyId METHOD of CpnDao CLASS: {} " + query, e);
-
+            logger.error("Database exception occur" + query, e);
         }
-
         return results;
     }
 
@@ -71,7 +79,5 @@ public class CassandraRepo {
             }catch(Exception e){
                 System.out.println("Exception occured while Product insertion to cassandra: " + e.getMessage());
             }
-
     }
-
 }

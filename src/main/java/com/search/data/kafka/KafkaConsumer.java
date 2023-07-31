@@ -39,33 +39,33 @@ public class KafkaConsumer {
 //    @Qualifier("dbConfig")
 //    private Properties mysqlProperties;
 
-    @KafkaListener(id = "batch-listener-test", topics = "test_search")
-    public void onReceiving(List<String> searchDataJSONs, @Header(KafkaHeaders.OFFSET) List<Long> offsets,
-                            @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
-                            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Acknowledgment acknowledgment) {
-
-        this.topic = topic;
-       // searchDataJSONs = filterKafkaNullMessages(searchDataJSONs);
-        List<SearchData> searchData=filterKafkaNullMessagesObject(searchDataJSONs);
-        CountDownLatch latch = new CountDownLatch(searchDataJSONs.size());
-//        for (int position = 0; position < searchDataJSONs.size(); position++) {
-//            String supplierProductJSON = searchDataJSONs.get(position);
-//            System.out.println("data------- " + supplierProductJSON);
-//            repo.save(searchDataJSONs.get(0));
-           // repo.saveDataToES(searchDataJSONs.get(0),searchDataJSONs.get(1));
-            //threadPool.submit(new SearchDataUpdateToES(supplierProductJSON, latch));
-//repo.save(searchData.get(0));
-        //}
-
-        try {
-            latch.await();
-            acknowledgment.acknowledge();
-            logger.info("acknowledged [" + topic + "]");
-        } catch (Exception e) {
-            logger.error("error occured while waiting at latch[" + Thread.currentThread().getName() + "]", e);
-        }
-
-    }
+//    @KafkaListener(id = "batch-listener-test", topics = "test_search")
+//    public void onReceiving(List<String> searchDataJSONs, @Header(KafkaHeaders.OFFSET) List<Long> offsets,
+//                            @Header(KafkaHeaders.RECEIVED_PARTITION_ID) List<Integer> partitions,
+//                            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Acknowledgment acknowledgment) {
+//
+//        this.topic = topic;
+//       // searchDataJSONs = filterKafkaNullMessages(searchDataJSONs);
+//        List<SearchData> searchData=filterKafkaNullMessagesObject(searchDataJSONs);
+//        CountDownLatch latch = new CountDownLatch(searchDataJSONs.size());
+////        for (int position = 0; position < searchDataJSONs.size(); position++) {
+////            String supplierProductJSON = searchDataJSONs.get(position);
+////            System.out.println("data------- " + supplierProductJSON);
+////            repo.save(searchDataJSONs.get(0));
+//           // repo.saveDataToES(searchDataJSONs.get(0),searchDataJSONs.get(1));
+//            //threadPool.submit(new SearchDataUpdateToES(supplierProductJSON, latch));
+////repo.save(searchData.get(0));
+//        //}
+//
+//        try {
+//            latch.await();
+//            acknowledgment.acknowledge();
+//            logger.info("acknowledged [" + topic + "]");
+//        } catch (Exception e) {
+//            logger.error("error occured while waiting at latch[" + Thread.currentThread().getName() + "]", e);
+//        }
+//
+//    }
 
 
 //    class SearchDataUpdateToES implements Callable<Boolean> {

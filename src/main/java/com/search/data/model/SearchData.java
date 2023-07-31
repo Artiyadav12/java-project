@@ -11,6 +11,7 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 //import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +19,7 @@ import javax.persistence.*;
 @Table(name = "serach_data")
 @Data
 //@Document(indexName = "productindex")
-public class SearchData {
+public class SearchData implements Serializable {
 
     @Id
     @Column(name = "id")

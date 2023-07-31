@@ -56,13 +56,13 @@ private String mode="sandbox";
 
         if (mode.equalsIgnoreCase("sandbox")) {
 
-            recipients.add(new InternetAddress("arunansh.singh@moglix.com"));
+            recipients.add(new InternetAddress("km.arti@moglix.com"));
           //  recipients.add(new InternetAddress("arti07411@gmail.com"));
 
         } else if (mode.equalsIgnoreCase("live")) {
 
             List<String> toMailByMap = new ArrayList<>();
-            toMailByMap.add("km.arti@moglix.com");
+            toMailByMap.add("arunansh.singh@moglix.com");
 
             if (!CollectionUtils.isEmpty(toMailByMap)) {
                 for(String address: toMailByMap) {

@@ -1,0 +1,7 @@
+Velocity Used for text based purpose
+#parse("src/main/resources/templates/htmlvelocity.html")
+$message
+$data
+
+
+
