@@ -172,10 +172,15 @@
             <version>6.1.0</version>
         </dependency>
 
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.cloud</groupId>-->
-        <!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--		</dependency>-->
+        		<dependency>
+        			<groupId>org.springframework.cloud</groupId>
+        			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        		</dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
         <dependency>
@@ -184,10 +189,7 @@
             <version>6.1.0</version>
             <scope>test</scope>
         </dependency>
-        <!--		<dependency>-->
-        <!--			<groupId>org.springframework.cloud</groupId>-->
-        <!--			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--		</dependency>-->
+
 
         <!-- Apache Velocity -->
         <dependency>
@@ -207,11 +209,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--					<dependency>-->
-            <!--						<groupId>org.springframework.cloud</groupId>-->
-            <!--						<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-            <!--						<version>${spring-cloud.version}</version>-->
-            <!--					</dependency>-->
         </dependencies>
     </dependencyManagement>
 
@@ -224,6 +221,8 @@
             </plugin>
         </plugins>
     </build>
+
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
